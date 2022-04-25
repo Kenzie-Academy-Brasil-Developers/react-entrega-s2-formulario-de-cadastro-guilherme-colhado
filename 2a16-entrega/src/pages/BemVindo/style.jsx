@@ -13,4 +13,10 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
     }
+    a{
+        color: ${props => !props.modoClaro ? cores.backgroundClaro : cores.backgroundEscuro};
+        & :hover{
+            filter: brightness(1.25);
+        }
+    }
 `
