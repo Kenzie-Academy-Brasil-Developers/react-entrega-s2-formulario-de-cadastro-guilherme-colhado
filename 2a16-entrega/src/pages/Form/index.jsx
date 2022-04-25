@@ -15,14 +15,13 @@ import { Container } from "./style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityIcon from "@mui/icons-material/VisibilityOutlined";
 
 export default function Form({ modoClaro, setModoClaro }) {
-  const navigate = useNavigate();
+  const navigate = useHistory();
   const [showPassword, setShowPassword] = useState(false);
-
   const formSchema = yup.object().shape({
     userName: yup.string().required("Este campo é obrigatorio"),
     email: yup
@@ -52,7 +51,7 @@ export default function Form({ modoClaro, setModoClaro }) {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formSchema) });
 
-  const onSubmitFuncion = (data) => navigate("/bemVindo", { state: { data } });
+  const onSubmitFuncion = (data) => navigate.push(`/bemVindo/${data.userName}`);
 
   return (
     <Container modoClaro={modoClaro}>
